@@ -8,4 +8,3 @@ plot(code)
 
 # Save QRS 
 generate_svg(code, filename = "Plots/Github_QRS.svg")
-pdf("Plots/Github_QRS.pdf", width = 7, height = 7)
