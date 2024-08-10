@@ -316,52 +316,69 @@ Logistic_plot
 Logistic_plot <- 
   Schema_GRCh38_Watershed |> 
   ggplot() + 
-  geom_point(aes(x = cadd, y = RNA, alpha = 0.5)) +
-  geom_hline(yintercept = 0.5, linetype = "dashed", color = "black") +
+  geom_point(aes(x = cadd, y = RNA, alpha = 0.2)) +
+  geom_hline(yintercept = 0.5, linetype = "dashed", color = "red") +
   geom_line(aes(y = prediction_RNA, x = cadd), color = "red", size = 1) + 
-  labs(title = "RNA Signal versus CADD",
+  labs(title = "RNA Signal Logistic Regression",
+       subtitle = "Solid Red Line: Prediction of RNA posterior probability\nwith scaled MAF held constant at the median",
        x = "Combined Annotation Dependent Depletion (CADD)",
        y = "RNA Posterior Probability",
        colour = "Prediction") + 
   theme_bw() + 
-  theme(legend.position = "none") + 
+  theme(legend.position = "none",
+        plot.title = element_text(face = "bold"), 
+        plot.subtitle = element_text(size = 8)) + 
   Schema_GRCh38_Watershed |> 
   ggplot() + 
-  geom_point(aes(x = cadd, y = Methylation, alpha = 0.5)) + 
-  geom_hline(yintercept = 0.5, linetype = "dashed", color = "black") +
+  geom_point(aes(x = cadd, y = Methylation, alpha = 0.2)) + 
+  geom_hline(yintercept = 0.5, linetype = "dashed", color = "red") +
   geom_line(aes(y = prediction_methyl, x = cadd), color = "red", size = 1) + 
   ylim(0,1) + 
-  labs(title = "Methylation Signal versus CADD",
+  labs(title = "Methylation Signal Logistic Regression",
+       subtitle = "Solid Red Line: Prediction of methylation posterior probability\nwith scaled MAF held constant at the median",
        x = "Combined Annotation Dependent Depletion (CADD)",
        y = "Methylation Posterior Probability",
        colour = "Prediction") + 
   theme_bw() + 
-  theme(legend.position = "none") + 
+  theme(legend.position = "none",
+        plot.title = element_text(face = "bold"),
+        plot.subtitle = element_text(size = 8)) + 
   Schema_GRCh38_Watershed|> 
   ggplot() + 
-  geom_point(aes(x = cadd, y = Splicing, alpha = 0.5)) + 
-  geom_hline(yintercept = 0.5, linetype = "dashed", color = "black") +
+  geom_point(aes(x = cadd, y = Splicing, alpha = 0.2)) + 
+  geom_hline(yintercept = 0.5, linetype = "dashed", color = "red") +
   geom_line(aes(y = prediction_splicing, x = cadd), color = "red", size = 1) + 
-  labs(title = "Splicing Signal versus CADD",
+  labs(title = "Splicing Signal Logistic Regression",
+       subtitle = "Solid Red Line: Prediction of splicing posterior probability\nwith scaled MAF held constant at the median",
        x = "Combined Annotation Dependent Depletion (CADD)",
        y = "Splicing Posterior Probability",
        colour = "Prediction") + 
   theme_bw() + 
-  theme(legend.position = "none") + 
+  theme(legend.position = "none", 
+        plot.title = element_text(face = "bold"),
+        plot.subtitle = element_text(size = 8)) + 
   Schema_GRCh38_Watershed |> 
   ggplot() + 
-  geom_point(aes(x = cadd, y = Protein, alpha = 0.5)) + 
-  geom_hline(yintercept = 0.5, linetype = "dashed", color = "black") +
+  geom_point(aes(x = cadd, y = Protein, alpha = 0.2)) + 
+  geom_hline(yintercept = 0.5, linetype = "dashed", color = "red") +
   geom_line(aes(y = prediction_protein, x = cadd), color = "red", size = 1) +
-  labs(title = "Protein Signal versus CADD",
+  labs(title = "Protein Signal Logistic Regression",
+       subtitle = "Solid Red Line: Prediction of protein posterior probability\nwith scaled MAF held constant at the median",
        x = "Combined Annotation Dependent Depletion (CADD)",
        y = "Protein Posterior Probability",
        colour = "Prediction") +
   theme_bw() + 
-  theme(legend.position = "none") 
+  theme(legend.position = "none",
+        plot.title = element_text(face = "bold"),
+        plot.subtitle = element_text(size = 8)) 
+
+
+# Logistic_plot
+Logistic_plot
+
 
 # Save pdf 
-ggsave(filename = "Logistic_plot.pdf", 
+ggsave(filename = "Plots/Logistic_plot.pdf", 
        plot = Logistic_plot, 
        width = 9, 
        height = 6)

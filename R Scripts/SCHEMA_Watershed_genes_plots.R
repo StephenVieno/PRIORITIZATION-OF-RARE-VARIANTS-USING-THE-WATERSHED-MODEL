@@ -216,15 +216,18 @@ Schema_case_control_plot <- Schema_case_control_genes |>
                    x = status, 
                    fill = status,
                    alpha = 0.5)) + 
+  scale_y_continuous( breaks = c(0, 0.25, 0.5, 0.75, 1)) + 
   scale_color_manual(values = c("#65CB5EFF","#440154FF","#FDE725FF", "#355E8DFF"), 
                      aesthetics = c("colour", "fill")) + 
   labs(title = "Distribution of Rare Variant Effect Sizes in Schizophrenia-Associated Genes",
-       x = "Prioritized Watershed vs Non-Watershed Variants",
+       subtitle = "Wilcoxon rank sum test of variant effect size percentiles (p-values reported in figure)", 
+       x = "Variant Group",
        y = "Schizophrenia Effect Size Percentile", 
        fill = "Variant Status")  + 
   theme_minimal() + 
   theme(legend.position = "none", 
-        axis.text.x = element_text(angle = 45, hjust = 1)) + 
+        axis.text.x = element_text(angle = 0, hjust = 0.5),
+        plot.title = element_text(face = "bold",  hjust = 1.5, size = 13)) + 
   geom_signif(
     comparisons = list(c("watershed-case", "watershed-control"), 
                        c("watershed-case", "non-watershed-control"),
@@ -251,9 +254,9 @@ gene variants
 Schema_case_control_plot
 
 # Save plot 
-ggsave("Schema_case_control_plot.pdf", 
+ggsave("Plots/Schema_case_control_plot.pdf", 
        plot = Schema_case_control_plot, 
        width = 7, 
-       height = 7)
+       height = 10)
 
 

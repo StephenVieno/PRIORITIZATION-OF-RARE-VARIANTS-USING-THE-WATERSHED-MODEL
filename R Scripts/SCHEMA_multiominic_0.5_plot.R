@@ -296,11 +296,13 @@ Schema_variants_0.5_plot <- plot_data |>
   scale_color_manual(values = c("#FDE725FF", "#355E8DFF"), 
                      aesthetics = c("colour", "fill")) + 
   labs(title = "Distribution of Rare Variant Effect Sizes Prioritized by the Watershed Model in Schizophrenia-Associated Genes at Posterior Probabilities > 0.5",
-       x = "Multiomic Posterior Probability",
+       subtitle = "Wilcoxon rank sum test of variant effect size percentiles (p-values reported in figure)", 
+       x = "",
        y = "Schizophrenia Effect Size Percentile",
        color = "Dataset") + 
   theme(legend.position = "none", 
-        axis.text.x = element_text(angle = 45, hjust = 1)) + 
+        axis.text.x = element_text(angle = 45, hjust = 1), 
+        plot.title = element_text(face = "bold")) + 
   geom_signif(
     comparisons = my_comparisons,
     textsize = 3, 
@@ -341,13 +343,12 @@ Schema_variants_0.5_plot <- plot_data |>
 Schema_variants_0.5_plot
 
 # Save plot 
-ggsave("Schema_variants_0.5_plot.pdf", 
+ggsave("Plots/Schema_variants_0.5_plot.pdf", 
        plot = Schema_variants_0.5_plot, 
        width = 10, 
        height = 7)
 
 
-# -------------------------------------------------------------------------
 
 # Multiple testing correction 
 test1 <- 

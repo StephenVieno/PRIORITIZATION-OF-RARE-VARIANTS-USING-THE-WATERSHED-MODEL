@@ -174,19 +174,20 @@ upsetplot(go_enrich)
 
 # Barplot 
 barplot(go_enrich, showCategory=20) + 
-  ggtitle("Ultrarare Variants Gene-Set Gene Ontology Enrichment")
+  ggtitle("Gene Ontology Analysis of Ultra-rare Variant Gene Sets")
 
 # Dotplot 
-dotplot <- dotplot(go_enrich, showCategory=20) + 
-  ggtitle("Ultrarare Variants Gene-Set Gene Ontology Enrichment") + 
-  theme(plot.title = element_text(size = 10)) + 
-  xlab("Gene Ratio")
+dotplot <- dotplot(go_enrich, 
+                   showCategory=20) + 
+  ggtitle("Gene Ontology Analysis of Ultra-rare Variant Gene Sets") + 
+  theme(plot.title = element_text(size = 15, hjust = 0.5, face = "bold")) + 
+  xlab("Gene Ratio") 
 
 # Dotplot 
 dotplot
 
 # Save dotplot
-ggsave("Ultrarare_10_dotplot.pdf", 
+ggsave("Plots/Ultrarare_10_dotplot.pdf", 
        plot = dotplot, 
-       width = 7, 
+       width = 8, 
        height = 10)

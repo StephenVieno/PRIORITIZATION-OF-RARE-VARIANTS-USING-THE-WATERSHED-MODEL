@@ -158,20 +158,21 @@ upsetplot(go_enrich)
 
 # Barplot 
 barplot(go_enrich, showCategory=20) + 
-  ggtitle("Watershed Gene-Set GO Enrichment")
+  ggtitle("Gene Ontology Analysis of Watershed-Derived Gene Sets")
 
 # Dotplot 
 dotplot <- dotplot(go_enrich, showCategory=20) + 
-  ggtitle("Watershed Gene-Set Gene Ontology Enrichment") + 
-  theme(plot.title = element_text(size = 12))
+  ggtitle("Gene Ontology Analysis of Watershed-Derived Gene Sets") + 
+  theme(plot.title = element_text(size = 15, hjust = 0.5, face = "bold")) + 
+  xlab("Gene Ratio")
 
 # Dotplot 
 dotplot
 
 # Save dotplot
-ggsave("Watershed_dotplot.pdf", 
+ggsave("Plots/Watershed_dotplot.pdf", 
        plot = dotplot, 
-       width = 7, 
+       width = 8, 
        height = 10)
 
 # All Watershed genes 
@@ -192,18 +193,18 @@ upsetplot(go_enrich)
 
 # Barplot 
 barplot(go_enrich, showCategory=20) + 
-  ggtitle("Watershed Gene-Set GO Enrichment")
+  ggtitle("Watershed Gene-Set GO")
 
 # Dotplot 
 dotplot <- dotplot(go_enrich, showCategory=20) + 
-  ggtitle("Watershed Gene-Set GO Enrichment") + 
-  theme(plot.title = element_text(size = 12))
+  ggtitle("Gene Ontology Analysis of Watershed-Derived Gene Sets") + 
+  theme(plot.title = element_text(size = 15, face = "bold"))
 
 # Dotplot 
 dotplot
 
 # Save dotplot
-ggsave("Watershed_allgenes_dotplot.pdf", 
+ggsave("Plots/Watershed_allgenes_dotplot.pdf", 
        plot = dotplot, 
        width =7, 
        height = 10)

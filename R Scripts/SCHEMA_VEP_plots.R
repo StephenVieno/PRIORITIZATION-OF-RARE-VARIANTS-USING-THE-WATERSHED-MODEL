@@ -125,27 +125,37 @@ Schema_GRCh38_Watershed <- Schema_GRCh38 |>
 
 # VEP vs RNA boxplot  
 VEP_plot1 <- 
-Schema_GRCh38_Watershed |> 
+  Schema_GRCh38_Watershed |> 
+  mutate(consequence = gsub("_"," ", consequence)) |> 
   ggplot() +
   geom_jitter(aes(x = consequence, y = RNA, alpha = 0.01, color = consequence)) +
   geom_boxplot(aes(x = consequence, y = RNA, alpha = 0.01), outlier.shape = NA) + 
   geom_hline(yintercept = 0.5, linetype = "dashed", color = "red") + 
   geom_hline(yintercept = 0.9, linetype = "dashed", color = "red") + 
   theme_minimal() + 
-  theme(axis.text.x = element_text(angle = 45, hjust = 1)) + 
-  scale_color_manual(values = viridis(18), aesthetics = c("colour", "fill")) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1), 
+        plot.title = element_text(face = "bold")) + 
+  scale_color_manual(values = viridis(18), 
+                     aesthetics = c("colour", "fill"), 
+                     labels = function(x) {
+                       ifelse(is.na(x), "no predicted consequence", x)
+                     }) +
+  scale_x_discrete(labels = function(x) {
+    ifelse(is.na(x), "no predicted consequence", x)
+  }) + 
   labs(title = "Distribution of RNA Posterior Probability versus Variant Effect Predictor (VEP) Annotations",
        y = "RNA Posterior Probability",
        x = "Variant Effect Predictor (VEP) Consequences",
        color = "VEP Consequences") +
-  guides(alpha = "none")
-
+  guides(alpha = "none") 
+  
 # Plot 1 
 VEP_plot1
 
 # Save VEP plot 1 
 dev.off()
-ggsave(filename = "VEP_plot1.pdf", 
+
+ggsave(filename = "Plots/VEP_plot1.pdf", 
        plot = VEP_plot1, 
        device = "pdf", 
        width = 12, 
@@ -155,27 +165,35 @@ ggsave(filename = "VEP_plot1.pdf",
 # VEP vs Methylation boxplot  
 VEP_plot2 <- 
 Schema_GRCh38_Watershed |> 
+  mutate(consequence = gsub("_"," ", consequence)) |> 
   ggplot() +
   geom_jitter(aes(x = consequence, y = Methylation, alpha = 0.01, color = consequence)) +
   geom_boxplot(aes(x = consequence, y = Methylation,  alpha = 0.01), outlier.shape = NA) + 
   geom_hline(yintercept = 0.5, linetype = "dashed", color = "red") + 
   geom_hline(yintercept = 0.9, linetype = "dashed", color = "red") + 
   theme_minimal() +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1)) + 
-  scale_color_manual(values = viridis(18), aesthetics = c("colour", "fill")) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1), 
+        plot.title = element_text(face = "bold")) + 
+  scale_color_manual(values = viridis(18), 
+                     aesthetics = c("colour", "fill"), 
+                     labels = function(x) {
+                       ifelse(is.na(x), "no predicted consequence", x)
+                     }) +
+  scale_x_discrete(labels = function(x) {
+    ifelse(is.na(x), "no predicted consequence", x)
+  }) +
   labs(title = "Distribution of Methylation Posterior Probability versus Variant Effect Predictor (VEP) Annotations",
        y = "Methylation Posterior Probability",
        x = "Variant Effect Predictor (VEP) Consequences",
        color = "VEP Consequences") + 
-  guides(alpha = "none") + 
-  guides(alpha = "none")
+  guides(alpha = "none") 
 
 # Plot 2 
 VEP_plot2
 
 # Save VEP plot 2
 dev.off()
-ggsave(filename = "VEP_plot2.pdf", 
+ggsave(filename = "Plots/VEP_plot2.pdf", 
        plot = VEP_plot2, 
        device = "pdf", 
        width = 12, 
@@ -184,14 +202,23 @@ ggsave(filename = "VEP_plot2.pdf",
 # VEP vs Splicing boxplot  
 VEP_plot3 <- 
 Schema_GRCh38_Watershed |> 
+  mutate(consequence = gsub("_"," ", consequence)) |> 
   ggplot() +
   geom_jitter(aes(x = consequence, y = Splicing, alpha = 0.01, color = consequence)) +
   geom_boxplot(aes(x = consequence, y = Splicing, alpha = 0.01), outlier.shape = NA) + 
   geom_hline(yintercept = 0.5, linetype = "dashed", color = "red") + 
   geom_hline(yintercept = 0.9, linetype = "dashed", color = "red") + 
   theme_minimal() +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1)) + 
-  scale_color_manual(values = viridis(18), aesthetics = c("colour", "fill")) + 
+  theme(axis.text.x = element_text(angle = 45, hjust = 1), 
+        plot.title = element_text(face = "bold")) + 
+  scale_color_manual(values = viridis(18), 
+                     aesthetics = c("colour", "fill"), 
+                     labels = function(x) {
+                       ifelse(is.na(x), "no predicted consequence", x)
+                     }) +
+  scale_x_discrete(labels = function(x) {
+    ifelse(is.na(x), "no predicted consequence", x)
+  }) + 
   labs(title = "Distribution of Splicing Posterior Probability versus Variant Effect Predictor (VEP) Annotations",
        y = "Splicing Posterior Probability",
        x = "Variant Effect Predictor (VEP) Consequences",
@@ -203,7 +230,7 @@ VEP_plot3
 
 # Save VEP plot 3
 dev.off()
-ggsave(filename = "VEP_plot3.pdf", 
+ggsave(filename = "Plots/VEP_plot3.pdf", 
        plot = VEP_plot3, 
        device = "pdf", 
        width = 12, 
@@ -212,14 +239,23 @@ ggsave(filename = "VEP_plot3.pdf",
 # VEP vs Protein boxplot  
 VEP_plot4 <- 
 Schema_GRCh38_Watershed |> 
+  mutate(consequence = gsub("_"," ", consequence)) |> 
   ggplot() +
   geom_jitter(aes(x = consequence, y = Protein, alpha = 0.01, color = consequence)) +
   geom_boxplot(aes(x = consequence, y = Protein,  alpha = 0.01), outlier.shape = NA) + 
   geom_hline(yintercept = 0.5, linetype = "dashed", color = "red") + 
   geom_hline(yintercept = 0.9, linetype = "dashed", color = "red") + 
   theme_minimal() +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
-  scale_color_manual(values = viridis(18), aesthetics = c("colour", "fill")) + 
+  theme(axis.text.x = element_text(angle = 45, hjust = 1),
+        plot.title = element_text(face = "bold")) +
+  scale_color_manual(values = viridis(18), 
+                     aesthetics = c("colour", "fill"),
+                     labels = function(x) {
+                       ifelse(is.na(x), "no predicted consequence", x)
+                     }) +
+  scale_x_discrete(labels = function(x) {
+    ifelse(is.na(x), "no predicted consequence", x)
+  }) + 
   labs(title = "Distribution of Protein Posterior Probability versus Variant Effect Predictor (VEP) Annotations",
        y = "Protein Posterior Probability",
        x = "Variant Effect Predictor (VEP) Consequences",
@@ -231,7 +267,7 @@ VEP_plot4
 
 # Save VEP plot 4
 dev.off()
-ggsave(filename = "VEP_plot4.pdf", 
+ggsave(filename = "Plots/VEP_plot4.pdf", 
        plot = VEP_plot4, 
        device = "pdf", 
        width = 12, 
