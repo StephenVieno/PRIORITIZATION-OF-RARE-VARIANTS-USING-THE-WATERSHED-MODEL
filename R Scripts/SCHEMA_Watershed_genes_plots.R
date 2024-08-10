@@ -257,6 +257,7 @@ Schema_case_control_plot
 ggsave("Plots/Schema_case_control_plot.pdf", 
        plot = Schema_case_control_plot, 
        width = 7, 
-       height = 10)
+       height = 14)
+
 
 

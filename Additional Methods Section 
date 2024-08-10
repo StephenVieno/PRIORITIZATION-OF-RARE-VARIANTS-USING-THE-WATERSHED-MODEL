@@ -1,0 +1,19 @@
+
+Additional Methods Section: 
+
+SCHEMA Data: 
+
+Summary statistics were downloaded from the trans-ancestry meta-analysis of whole-exome sequencing by SCHEMA on February 2, 2024. This dataset includes the analysis of exomes from 24,248 cases and 97,322 controls (GRCh37/hg19). The conversion from the hg19 genome build to the hg38 genome build was performed using the liftOver package version 1.28.0. 
+
+Watershed Annotations:
+
+Annotated variants from the Watershed model were generated using data obtained from approximately 1,000 multi-ethnic participants in the Multi-Ethnic Study of Atherosclerosis (Li et al., 2023, Cell Genomics, PMID: 37868038). The Watershed model used data from RNA-seq, DNA methylation, plasma proteomics, and both untargeted and targeted metabolomics using liquid chromatography/mass spectrometry to generate posterior probabilities for each rare variant. For each prioritized rare variant, the Watershed model reported posterior probabilities for each functional category: mRNA expression, methylation, protein structure, and splicing.
+Annotated variants from the Watershed model were downloaded on January 15, 2024 (Li et al., 2023, Cell Genomics, PMID: 37868038). The Watershed annotations are composed of 19,233 unique rare variants mapped to 19,589 functional annotations. Using the Watershed annotations to annotate the SCHEMA dataset, 1,542 unique rare variants were annotated, resulting in a total of 1,699 functional annotations. All subsequent statistical analyses were performed in R version 4.4.1 (2024-06-14). 
+
+Analysis of Variant Effect Sizes 
+
+	In the analysis of effect sizes for rare variants, we calculated the percentiles of effect sizes for all rare variants with a minor allele frequency (MAF) less than 0.01. Because these variants are rare and thus not in linkage disequilibrium with each other, we assumed independence between variants and performed Wilcoxon rank-sum tests between percentile effect sizes of each variant. 
+	
+Definition of Schizophrenia Associated Genes 
+
+We utilized multi-ancestry meta-analysis results from Singh et al., where gene discovery was based on identifying genes enriched for PTVs (protein truncating variant), missense variants with MPC (missense badness, PolhPhen2, and constraint) > 3, and missense variants with MPC 2 - 3, to identify genes associated with schizophrenia. We defined genes as associated with schizophrenia if the p-value was less than 0.10, similar to the methodology used in the original Watershed paper. Genes with p-values greater than 0.50 were classified as not associated with schizophrenia. 
