@@ -254,10 +254,14 @@ gene variants
 Schema_case_control_plot
 
 # Save plot 
+ggsave("Plots/Schema_case_control_plot7x7.pdf", 
+       plot = Schema_case_control_plot, 
+       width = 7, 
+       height = 7)
+
 ggsave("Plots/Schema_case_control_plot.pdf", 
        plot = Schema_case_control_plot, 
        width = 7, 
        height = 14)
-
 
 
